@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Interactive Slideshow</title>
+  <style>
+    p {
+      font-size: 2em;
+      font-family: BlinkMacSystemFont, "Helvetica Neue", "Helvetica", sans-serif;
+    }
+    </style>
+</head>
+
+<body>
+  <img src="https://www.kasandbox.org/programming-images/food/mushroom.png" width="400" alt="Mushrooms" id="shroomImg">
+  <img src="https://www.kasandbox.org/programming-images/animals/cat.png" width="400" alt="Cat" id="catImg">
+  <br>
+  <button type="button" id="nextBtn">Next →</button>
+  <button type="button" id="backBtn">← Previous</button>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+  <script>
+    $("#backBtn").hide();
+    $("#catImg").hide();
+    $("#shroomImg").hide();
+    $("#shroomImg").slideDown(450);
+    $("<p>").text("Mushrooms").addClass("shroomTxt").appendTo("body");
+
+    $("#nextBtn").on("click", function() {
+      $("#shroomImg").slideUp();
+      $(".shroomTxt").slideUp();
+      $("#catImg").fadeToggle(450);
+      $("<p>").text("A cat.").addClass("catTxt").appendTo("body");
+      $("#nextBtn").hide();
+      $("#backBtn").show();
+    });
+
+    $("#backBtn").on("click", function() {
+      $("#catImg").slideToggle(450);
+      $("#shroomImg").slideDown(450);
+      $(".shroomTxt").fadeIn(450);
+      $(".catTxt").hide();
+      $("#backBtn").hide();
+      $("#nextBtn").show();
+    });
+  </script>
+</body>
+
+</html>
